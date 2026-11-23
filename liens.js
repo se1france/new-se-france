@@ -2,12 +2,16 @@ const LIENS = {
   // Adresse du script Google (inscriptions)
   scriptInscription: "COLLEZ_ICI_L_ADRESSE",
 
+  // Adresse du tableau de bord (Espace responsables)
+  scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbz5NlZJfWO1XwvgwagVYSnhddboSbx3sgPTqrAiGyCo0TSw9fodtGZ-qVbfYOH-TLyI2g/exec",
+
   instagram: "https://www.instagram.com/spiritembassyparisofficial",
   egliseMere: "https://www.goodnewsworld.com/",
   email: "media@spiritembassyfrance.fr",
 
   paypal: "https://www.paypal.com/donate/?hosted_button_id=XN3GDGBX3WWRQ",
-  // Dossier Drive des photos : adresse du script galerie (voir plus bas)
+
+  // Dossier Drive des photos : adresse du script galerie
   scriptGalerie: "https://script.google.com/macros/s/AKfycbyTWhCcYbgdw4w2o8HHX5Dj3wnqnOBxY_syAn28zdJoteYJIL6669oyTWKeEsZ8kWA9Sg/exec",
 
   // Réunions Zoom. jours : Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche
