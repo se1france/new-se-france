@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscription · Spirit Embassy France</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="liens.js"></script>
+</head>
+<body>
+  <div class="liseret"></div>
+  <header><nav>
+    <a href="index.html" class="logo" data-c="nom"></a>
+    <div class="liens"><a href="index.html">Accueil</a><a href="index.html#cultes">Cultes</a><a href="zoom.html">Zoom</a></div>
+  </nav></header>
+
+  <main class="formulaire">
+    <h1>Inscription</h1>
+    <p class="sous">Rejoignez la famille Spirit Embassy France.</p>
+
+    <form id="form">
+      <fieldset><legend>Identité</legend>
+        <div class="ligne">
+          <div><label>Prénom *</label><input name="prenom" required maxlength="60"></div>
+          <div><label>Nom *</label><input name="nom" required maxlength="60"></div>
+        </div>
+        <label>E-mail *</label>
+        <input type="email" name="email" required maxlength="120"
+          pattern="[^@\s]+@[^@\s]+\.[A-Za-z]{2,}"
+          title="Entrez une adresse e-mail valide, par exemple nom@exemple.fr">
+        <label>Téléphone *</label>
+        <div class="tel">
+          <select name="indicatif">
+            <option>+33</option><option>+32</option><option>+41</option><option>+44</option>
+            <option>+1</option><option>+49</option><option>+34</option><option>+39</option>
+            <option>+351</option><option>+237</option><option>+243</option><option>+242</option>
+            <option>+225</option><option>+221</option><option>+229</option><option>+228</option>
+            <option>+234</option><option>+233</option><option>+212</option><option>+213</option>
+          </select>
+          <input type="tel" name="telephone" required maxlength="15" inputmode="numeric"
+            pattern="[0-9 .\-]{6,15}" title="Chiffres uniquement, par exemple 6 12 34 56 78"
+            placeholder="6 12 34 56 78">
+        </div>
+        <div class="ligne">
+          <div><label>Date de naissance</label><input type="date" name="naissance" id="naissance" min="1900-01-01"></div>
+          <div><label>Genre</label>
+            <select name="genre"><option value="">-</option><option>Femme</option><option>Homme</option></select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Adresse</legend>
+        <label>Adresse *</label><input name="adresse" required maxlength="150">
+        <div class="ligne">
+          <div><label>Code postal *</label>
+            <input name="cp" required maxlength="10" pattern="[A-Za-z0-9 \-]{3,10}"
+              title="Code postal valide, par exemple 95200"></div>
+          <div><label>Ville *</label><input name="ville" required maxlength="80"></div>
+        </div>
+        <label>Pays</label><input name="pays" value="France" maxlength="60">
+      </fieldset>
+
+      <fieldset><legend>Parcours</legend>
+        <label>Avez-vous déjà été baptisé(e) ? *</label>
+        <select name="baptise" id="baptise" required>
+          <option value="">-</option><option>Non</option><option>Oui</option>
+        </select>
+
+        <div id="bloc-non" class="masque">
+          <label>Souhaitez-vous être baptisé(e) ?</label>
+          <select name="interetBapteme">
+            <option>Oui, je souhaite être baptisé(e)</option>
+            <option>Je souhaite en savoir plus</option>
+            <option selected>Pas pour le moment</option>
+          </select>
+        </div>
+
+        <div id="bloc-oui" class="masque">
+          <label>En quelle année avez-vous été baptisé(e) ?</label>
+          <input type="number" name="anneeBapteme" min="1930" max="2100" placeholder="Ex. 2015">
+          <label>Souhaitez-vous être rebaptisé(e) ?</label>
+          <select name="rebapteme"><option>Non</option><option>Oui</option></select>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Servir l'église</legend>
+        <label>Souhaitez-vous servir dans l'église ? *</label>
+        <select name="servir" id="servir" required>
+          <option value="">-</option>
+          <option>Oui, je souhaite servir</option>
+          <option>Je souhaite en savoir plus</option>
+          <option>Pas pour le moment</option>
+        </select>
+
+        <div id="bloc-servir" class="masque">
+          <label>Dans quel domaine souhaitez-vous servir ?</label>
+          <input name="domaine" maxlength="100" placeholder="Ex. : média, louange, accueil, enfants, intercession, logistique...">
+          <label>Jours de disponibilité en semaine</label>
+          <div class="jours">
+            <label><input type="checkbox" name="jours" value="Lundi">Lundi</label>
+            <label><input type="checkbox" name="jours" value="Mardi">Mardi</label>
+            <label><input type="checkbox" name="jours" value="Mercredi">Mercredi</label>
+            <label><input type="checkbox" name="jours" value="Jeudi">Jeudi</label>
+            <label><input type="checkbox" name="jours" value="Vendredi">Vendredi</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset><legend>Consentement</legend>
+        <div class="coche">
+          <input type="checkbox" name="rgpd" id="rgpd" required>
+          <label for="rgpd" style="margin:0">J'accepte que Spirit Embassy France conserve mes données pour me contacter et gérer l'église (RGPD). Elles ne sont jamais publiées ni vendues. Je peux demander leur suppression à <span id="mail-rgpd"></span>. *</label>
+        </div>
+      </fieldset>
+
+      <input class="cache" name="site" tabindex="-1" autocomplete="off">
+      <button class="bouton" type="submit">Envoyer mon inscription</button>
+      <p id="message"></p>
+    </form>
+
+    <div id="merci" class="merci masque">
+      <div class="coche-ok">✓</div>
+      <h2>Merci !</h2>
+      <p>Votre inscription est bien enregistrée.<br>
+         Un ministre vous contactera prochainement. Vous pouvez fermer cette page.</p>
+      <p><a href="index.html" class="bouton">Retour à l'accueil</a></p>
+      <p><a href="#" id="autre" style="color:#E3C77E;text-decoration:underline">Inscrire une autre personne</a></p>
+    </div>
+  </main>
+
+  <footer><p class="titre" data-c="devise"></p><p data-c="adresse"></p></footer>
+  <div class="liseret"></div>
+
+<script>
+document.getElementById("mail-rgpd").textContent = LIENS.email;
+document.getElementById("naissance").max = new Date().toISOString().split("T")[0];
+
+const form = document.getElementById("form");
+const bouton = form.querySelector("button[type=submit]");
+const montrer = (id, oui) => document.getElementById(id).classList.toggle("masque", !oui);
+
+function majChamps() {
+  const b = form.baptise.value;
+  montrer("bloc-non", b === "Non");
+  montrer("bloc-oui", b === "Oui");
+  montrer("bloc-servir", form.servir.value === "Oui, je souhaite servir");
+}
+form.addEventListener("change", majChamps);
+majChamps();
+
+function afficherMerci() {
+  form.classList.add("masque");
+  document.querySelector(".formulaire h1").classList.add("masque");
+  document.querySelector(".formulaire .sous").classList.add("masque");
+  document.getElementById("merci").classList.remove("masque");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function afficherFormulaire() {
+  document.getElementById("merci").classList.add("masque");
+  form.classList.remove("masque");
+  document.querySelector(".formulaire h1").classList.remove("masque");
+  document.querySelector(".formulaire .sous").classList.remove("masque");
+  bouton.disabled = false;
+  bouton.textContent = "Envoyer mon inscription";
+  majChamps();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+if (localStorage.getItem("inscrit")) afficherMerci();
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("message");
+  if (form.site.value || bouton.disabled) return;
+  const d = new FormData(form);
+  d.set("jours", d.getAll("jours").join(", "));
+  bouton.disabled = true;
+  bouton.textContent = "Envoi en cours… ne fermez pas la page";
+  try {
+    await fetch(LIENS.scriptInscription, { method: "POST", mode: "no-cors", body: new URLSearchParams(d) });
+    localStorage.setItem("inscrit", "1");
+    form.reset();
+    msg.textContent = "";
+    afficherMerci();
+  } catch (err) {
+    bouton.disabled = false;
+    bouton.textContent = "Envoyer mon inscription";
+    msg.style.color = "#EF4135";
+    msg.textContent = "Erreur de connexion. Réessayez ou écrivez-nous à " + LIENS.email + ".";
+  }
+});
+
+document.getElementById("autre").addEventListener("click", (e) => {
+  e.preventDefault();
+  localStorage.removeItem("inscrit");
+  afficherFormulaire();
+});
+</script>
+</body>
+</html>

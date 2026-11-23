@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Donner · Spirit Embassy France</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="liens.js"></script>
+</head>
+<body>
+  <div class="liseret"></div>
+  <header><nav>
+    <a href="index.html" class="logo" data-c="nom"></a>
+    <div class="liens"><a href="index.html">Accueil</a><a href="zoom.html">Zoom</a><a href="galerie.html">Temps forts</a>
+      <a href="inscription.html" class="bouton">Je m'inscris</a></div>
+  </nav></header>
+
+  <main>
+    <section class="formulaire">
+      <h1>Donner</h1>
+      <p class="sous">Merci de soutenir l'œuvre de Dieu à Spirit Embassy France.</p>
+    </section>
+    <p class="verset">« Que chacun donne comme il l'a résolu en son cœur, sans tristesse ni contrainte ; car Dieu aime celui qui donne avec joie. » <br><small>2 Corinthiens 9:7</small></p>
+
+    <div class="dons" id="dons"></div>
+    <p class="securite">Paiement sécurisé par PayPal (compte PayPal ou carte bancaire). Aucune donnée bancaire n'est conservée sur ce site.</p>
+  </main>
+
+  <footer><p class="titre" data-c="devise"></p><p data-c="adresse"></p></footer>
+  <div class="liseret"></div>
+
+<script>
+const types = [
+  ["Offrandes et semences", "Une offrande ou une semence pour l'œuvre de Dieu."],
+  ["Dîme", "Rendez à Dieu la dîme de vos revenus."],
+  ["Social", "Soutenez l'aide aux personnes dans le besoin."],
+  ["Devenir partenaire", "Un don régulier chaque mois. Sur la page PayPal, choisissez « Mensuel »."]
+];
+document.getElementById("dons").innerHTML = types.map(([t, d]) => `
+  <div class="don-carte ${t === "Devenir partenaire" ? "partenaire" : ""}">
+    <h2>${t}</h2><p>${d}</p>
+    <a class="bouton" href="${LIENS.paypal}" target="_blank" rel="noopener">Donner</a>
+  </div>`).join("");
+</script>
+</body>
+</html>

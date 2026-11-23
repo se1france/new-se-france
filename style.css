@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600&display=swap");
+
+:root { --nuit:#0B1530; --clair:#13224A; --profond:#070E22; --or:#C9A24B; --or2:#E3C77E; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--nuit); color:#e8ecf5; font-family:"Manrope",sans-serif; line-height:1.6; }
+a { color:inherit; }
+h1,h2,h3,.titre { font-family:"Cormorant Garamond",serif; margin:0; }
+
+.liseret { height:4px; background:linear-gradient(90deg,#0055A4 0 33.3%,#fff 33.3% 66.6%,#EF4135 66.6% 100%); }
+
+header { border-bottom:1px solid rgba(201,162,75,.2); }
+nav { max-width:1100px; margin:auto; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+nav .logo { font-family:"Cormorant Garamond",serif; font-size:26px; font-weight:600; color:var(--or); text-decoration:none; }
+nav .liens { display:flex; gap:22px; align-items:center; font-size:14px; }
+nav .liens a { text-decoration:none; }
+nav .liens a:hover { color:var(--or); }
+
+.bouton { display:inline-block; background:var(--or); color:var(--nuit)!important; padding:12px 28px; border-radius:999px; font-weight:600; text-decoration:none; }
+.bouton:hover { background:var(--or2); }
+.bouton-vide { background:none; border:1px solid var(--or); color:var(--or)!important; }
+.bouton-vide:hover { background:rgba(201,162,75,.1); }
+
+.hero { max-width:800px; margin:auto; padding:80px 24px; text-align:center; }
+.hero svg { width:80px; height:80px; }
+.devise { color:var(--or); letter-spacing:.3em; text-transform:uppercase; font-size:14px; margin-top:24px; }
+.hero h1 { font-size:clamp(44px,8vw,72px); font-weight:700; margin-top:12px; }
+.theme { font-family:"Cormorant Garamond",serif; font-size:32px; color:var(--or2); margin:20px 0 0; }
+.theme-en { color:#94a3b8; font-style:italic; margin:0; }
+.hero .intro { max-width:600px; margin:28px auto; color:#cbd5e1; }
+.boutons { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:30px; }
+
+.piliers { max-width:1100px; margin:auto; padding:0 24px; display:grid; gap:24px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.carte { background:var(--clair); border:1px solid rgba(201,162,75,.2); border-radius:16px; padding:24px; margin-bottom:16px; }
+.piliers .carte { margin:0; padding:32px; }
+.piliers h2 { color:var(--or); font-size:32px; }
+.carte-titre { font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--or); margin:0; }
+
+section.centre { max-width:720px; margin:90px auto 0; padding:0 24px; }
+section.centre h2 { text-align:center; font-size:40px; margin-bottom:24px; }
+.appel { text-align:center; background:var(--clair); border:1px solid rgba(201,162,75,.3); border-radius:16px; padding:48px 24px; }
+
+footer { margin-top:90px; background:var(--profond); border-top:1px solid rgba(201,162,75,.2); padding:40px 24px; text-align:center; font-size:14px; color:#94a3b8; }
+footer .titre { font-size:22px; color:var(--or); }
+footer a { text-decoration:underline; }
+
+/* Formulaire */
+.formulaire { max-width:720px; margin:60px auto 0; padding:0 24px; }
+.formulaire h1 { text-align:center; font-size:44px; }
+.formulaire .sous { text-align:center; color:#94a3b8; margin-bottom:30px; }
+fieldset { border:1px solid rgba(201,162,75,.25); border-radius:16px; padding:20px 24px; margin:0 0 20px; background:var(--clair); }
+legend { font-family:"Cormorant Garamond",serif; font-size:24px; color:var(--or); padding:0 8px; }
+.ligne { display:grid; gap:16px; grid-template-columns:1fr 1fr; }
+label { display:block; font-size:14px; margin:12px 0 4px; color:#cbd5e1; }
+input, select, textarea { width:100%; padding:12px; border-radius:10px; border:1px solid rgba(201,162,75,.3); background:var(--profond); color:#fff; font:inherit; font-size:16px; }
+input:focus, select:focus { outline:2px solid var(--or); }
+.coche { display:flex; gap:10px; align-items:flex-start; }
+.coche input { width:auto; margin-top:6px; }
+.jours { display:flex; flex-wrap:wrap; gap:14px; }
+.jours label { display:flex; gap:6px; align-items:center; margin:0; }
+.jours input { width:auto; }
+.tel { display:grid; grid-template-columns:130px 1fr; gap:10px; }
+button.bouton { border:0; cursor:pointer; font:inherit; font-weight:600; width:100%; font-size:17px; }
+button.bouton:disabled { opacity:.6; cursor:wait; }
+#message { text-align:center; margin-top:16px; font-weight:600; }
+.cache { position:absolute; left:-9999px; }
+.masque { display:none; }
+
+.merci { max-width:720px; margin:60px auto 0; padding:48px 24px; text-align:center;
+  background:var(--clair); border:1px solid rgba(201,162,75,.4); border-radius:16px; }
+.merci .coche-ok { width:72px; height:72px; margin:0 auto 16px; border-radius:50%;
+  background:var(--or); color:var(--nuit); font-size:44px; line-height:72px; font-weight:700; }
+.merci h2 { font-size:40px; color:var(--or); }
+.merci p { color:#cbd5e1; }
+
+/* Page Zoom */
+.zoom-liste { max-width:720px; margin:30px auto 0; padding:0 24px; }
+.zoom-titre { font-family:"Cormorant Garamond",serif; font-size:30px; color:var(--or2); margin:36px 0 14px; }
+.zoom-carte { background:var(--clair); border:1px solid rgba(201,162,75,.3); border-radius:16px; padding:28px; margin-bottom:20px; }
+.zoom-carte.aujourdhui { border:2px solid var(--or); box-shadow:0 0 24px rgba(201,162,75,.18); }
+.zoom-carte h2 { color:var(--or); font-size:30px; }
+.zoom-quand { color:#cbd5e1; margin:4px 0 18px; }
+.badge { display:inline-block; background:#EF4135; color:#fff; font-size:12px; font-weight:600; padding:2px 10px; border-radius:999px; margin-left:8px; vertical-align:middle; }
+.zoom-ligne { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 0; border-top:1px solid rgba(201,162,75,.15); flex-wrap:wrap; }
+.zoom-ligne span { color:#94a3b8; font-size:14px; }
+.zoom-ligne strong { font-size:17px; }
+.copier { background:none; border:1px solid var(--or); color:var(--or); padding:6px 14px; border-radius:999px; cursor:pointer; font:inherit; font-size:13px; width:auto; }
+.copier:hover { background:rgba(201,162,75,.1); }
+.zoom-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+.zoom-actions .bouton { flex:1; text-align:center; min-width:180px; }
+.aucune { color:#94a3b8; font-style:italic; }
+.zoom-petite { background:var(--clair); border:1px solid rgba(201,162,75,.2); border-radius:14px; padding:18px 22px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.zoom-petite h3 { color:var(--or); font-size:22px; }
+.zoom-petite p { margin:2px 0 0; color:#94a3b8; font-size:14px; }
+.zoom-petite .bouton { padding:9px 20px; font-size:14px; }
+.appli { display:block; text-align:center; margin-top:12px; font-size:13px; color:var(--or2); }
+
+@media (max-width:700px) {
+  .ligne { grid-template-columns:1fr; }
+  .tel { grid-template-columns:110px 1fr; }
+  nav { justify-content:center; }
+  nav .liens { gap:14px; }
+  .hero { padding:50px 20px; }
+  .theme { font-size:26px; }
+  .formulaire h1 { font-size:34px; }
+}
+
+.dons { max-width:900px; margin:30px auto 0; padding:0 24px; display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+.don-carte { background:var(--clair); border:1px solid rgba(201,162,75,.25); border-radius:16px; padding:26px; text-align:center; }
+.don-carte h2 { color:var(--or); font-size:28px; }
+.don-carte p { color:#cbd5e1; font-size:14px; min-height:60px; }
+.don-carte.partenaire { border:2px solid var(--or); }
+.verset { max-width:640px; margin:0 auto; text-align:center; font-family:"Cormorant Garamond",serif; font-size:22px; font-style:italic; color:var(--or2); padding:0 24px; }
+.securite { text-align:center; color:#94a3b8; font-size:13px; margin-top:28px; }
+
+.carrousel { position:relative; max-width:900px; margin:30px auto 0; overflow:hidden; border-radius:16px; border:1px solid rgba(201,162,75,.3); background:var(--profond); }
+.piste { display:flex; transition:transform .6s ease; }
+.diapo { min-width:100%; position:relative; }
+.diapo img { width:100%; height:520px; object-fit:cover; display:block; }
+.legende { position:absolute; left:0; right:0; bottom:0; padding:40px 20px 16px; background:linear-gradient(transparent,rgba(7,14,34,.9)); }
+.legende strong { font-family:"Cormorant Garamond",serif; font-size:26px; color:var(--or2); display:block; }
+.fleche { position:absolute; top:50%; transform:translateY(-50%); background:rgba(7,14,34,.7); color:var(--or); border:1px solid var(--or); width:44px; height:44px; border-radius:50%; font-size:22px; cursor:pointer; width:44px; }
+.fleche.g { left:12px; } .fleche.d { right:12px; }
+.points { display:flex; justify-content:center; gap:8px; padding:12px; }
+.points span { width:10px; height:10px; border-radius:50%; background:#475569; cursor:pointer; }
+.points span.actif { background:var(--or); }
+@media (max-width:700px) { .diapo img { height:300px; } }

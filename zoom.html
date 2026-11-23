@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoom · Spirit Embassy France</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="liens.js"></script>
+</head>
+<body>
+  <div class="liseret"></div>
+  <header><nav>
+    <a href="index.html" class="logo" data-c="nom"></a>
+    <div class="liens">
+      <a href="index.html">Accueil</a><a href="inscription.html" class="bouton">Je m'inscris</a>
+    </div>
+  </nav></header>
+
+  <main>
+    <section class="formulaire">
+      <h1>Rejoindre sur Zoom</h1>
+      <p class="sous">Mettez cette page en favori : vous y trouverez toujours la réunion du jour.</p>
+    </section>
+    <div class="zoom-liste" id="zoom-liste"></div>
+  </main>
+
+  <footer><p class="titre" data-c="devise"></p><p data-c="adresse"></p></footer>
+  <div class="liseret"></div>
+
+<script>
+const ORDRE = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"];
+const CODES = { Lundi:"MO", Mardi:"TU", Mercredi:"WE", Jeudi:"TH", Vendredi:"FR", Samedi:"SA", Dimanche:"SU" };
+const esc = s => String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"<",">":">",'"':"&quot;","'":"&#39;"}[c]));
+const urlSure = u => /^https:\/\//.test(u) ? u : "#";
+
+const parts = new Intl.DateTimeFormat("fr-FR", { timeZone:"Europe/Paris", weekday:"long", hour:"2-digit", minute:"2-digit", hour12:false }).formatToParts(new Date());
+const get = t => parts.find(p => p.type === t).value;
+const jourParis = get("weekday").charAt(0).toUpperCase() + get("weekday").slice(1);
+const minutesParis = (+get("hour") % 24) * 60 + +get("minute");
+
+const enDirect = z => {
+  const [h, m] = z.heure.split(":").map(Number);
+  const debut = h * 60 + m;
+  return z.jours.includes(jourParis) && minutesParis >= debut - 10 && minutesParis <= debut + (z.duree || 120);
+};
+
+function lienAppli(z) {
+  const m = /\/j\/(\d+)(?:\?pwd=([^&]+))?/.exec(z.url);
+  if (!m) return "";
+  return "zoommtg://zoom.us/join?confno=" + m[1] + (m[2] ? "&pwd=" + m[2] : "");
+}
+
+function texteJours(jours) {
+  const idx = jours.map(j => ORDRE.indexOf(j)).sort((a, b) => a - b);
+  const suite = idx.length > 2 && idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+  const n = idx.map(i => ORDRE[i]);
+  if (suite) return n[0] + " au " + n[n.length - 1].toLowerCase();
+  if (n.length === 1) return n[0];
+  return n.slice(0, -1).join(", ") + " et " + n[n.length - 1].toLowerCase();
+}
+
+function lienCalendrier(z) {
+  const [h, m] = z.heure.split(":").map(Number);
+  const pad = n => String(n).padStart(2, "0");
+  const d = new Date();
+  const diff = (ORDRE.indexOf(z.jours[0]) - ORDRE.indexOf(jourParis) + 7) % 7;
+  d.setDate(d.getDate() + diff);
+  const base = d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
+  const fin = h * 60 + m + (z.duree || 120);
+  const p = new URLSearchParams({
+    action:"TEMPLATE", text: z.titre + " · " + CONFIG.nom,
+    dates: base + "T" + pad(h) + pad(m) + "00/" + base + "T" + pad(Math.floor(fin / 60) % 24) + pad(fin % 60) + "00",
+    details:"Rejoindre sur Zoom : " + z.url, ctz:"Europe/Paris",
+    recur:"RRULE:FREQ=WEEKLY;BYDAY=" + z.jours.map(j => CODES[j]).join(",")
+  });
+  return "https://calendar.google.com/calendar/render?" + p;
+}
+
+function grandeCarte(z) {
+  const appli = lienAppli(z);
+  return `
+  <div class="zoom-carte aujourdhui">
+    <h2>${esc(z.titre)}${enDirect(z) ? '<span class="badge">En direct</span>' : ""}</h2>
+    <p class="zoom-quand">Aujourd'hui à ${esc(z.heure).replace(":", "h")} (heure de Paris)</p>
+    ${z.id ? `<div class="zoom-ligne"><div><span>ID de réunion</span><br><strong>${esc(z.id)}</strong></div>
+      <button class="copier" data-t="${esc(z.id)}">Copier</button></div>` : ""}
+    ${z.code ? `<div class="zoom-ligne"><div><span>Code secret</span><br><strong>${esc(z.code)}</strong></div>
+      <button class="copier" data-t="${esc(z.code)}">Copier</button></div>` : ""}
+    ${z.tel ? `<div class="zoom-ligne"><div><span>Rejoindre par téléphone</span><br>
+      <strong><a href="tel:${esc(z.tel.replace(/[^+0-9]/g, ""))}">${esc(z.tel)}</a></strong></div></div>` : ""}
+    <div class="zoom-actions">
+      <a class="bouton" href="${esc(urlSure(z.url))}" target="_blank" rel="noopener">Rejoindre sur Zoom</a>
+      <a class="bouton bouton-vide" href="${esc(lienCalendrier(z))}" target="_blank" rel="noopener">Ajouter au calendrier</a>
+    </div>
+    ${appli ? `<a class="appli" href="${esc(appli)}">Ouvrir directement l'application Zoom</a>` : ""}
+  </div>`;
+}
+
+function petiteCarte(z) {
+  return `
+  <div class="zoom-petite">
+    <div>
+      <h3>${esc(z.titre)}</h3>
+      <p>${esc(texteJours(z.jours))} · ${esc(z.heure).replace(":", "h")}</p>
+    </div>
+    <a class="bouton" href="${esc(urlSure(z.url))}" target="_blank" rel="noopener">Rejoindre</a>
+  </div>`;
+}
+
+const parHeure = (a, b) => a.heure.localeCompare(b.heure);
+const duJour = LIENS.zoom.filter(z => z.jours.includes(jourParis)).sort(parHeure);
+const autres = LIENS.zoom.filter(z => !z.jours.includes(jourParis))
+  .sort((a, b) => ORDRE.indexOf(a.jours[0]) - ORDRE.indexOf(b.jours[0]));
+
+let html = `<h2 class="zoom-titre">Aujourd'hui · ${esc(jourParis)}</h2>`;
+html += duJour.length ? duJour.map(grandeCarte).join("")
+                      : `<p class="aucune">Pas de réunion aujourd'hui. Voyez les autres réunions ci-dessous.</p>`;
+if (autres.length) {
+  html += `<h2 class="zoom-titre">Nos autres réunions</h2>` + autres.map(petiteCarte).join("");
+}
+document.getElementById("zoom-liste").innerHTML = html;
+
+document.addEventListener("click", e => {
+  const b = e.target.closest(".copier");
+  if (!b) return;
+  navigator.clipboard.writeText(b.dataset.t).then(() => {
+    b.textContent = "Copié ✓";
+    setTimeout(() => b.textContent = "Copier", 1800);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spirit Embassy France</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js"></script>
+  <script src="liens.js"></script>
+</head>
+<body>
+  <div class="liseret"></div>
+  <header>
+    <nav>
+      <a href="index.html" class="logo" data-c="nom"></a>
+      <div class="liens">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#cultes">Cultes</a>
+        <a href="zoom.html">Zoom</a>
+        <a href="galerie.html">Temps forts</a>
+        <a href="don.html">Donner</a>
+        <a href="inscription.html" class="bouton">Je m'inscris</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <svg viewBox="0 0 100 100" fill="none" stroke="#C9A24B" stroke-width="2.5">
+        <circle cx="50" cy="50" r="46"/>
+        <path d="M50 18 C62 36 70 46 70 58 a20 20 0 0 1 -40 0 C30 46 38 36 50 18 Z" fill="#C9A24B" fill-opacity="0.15"/>
+        <path d="M50 40 C56 50 59 55 59 61 a9 9 0 0 1 -18 0 C41 55 44 50 50 40 Z" fill="#C9A24B"/>
+      </svg>
+      <p class="devise" data-c="devise"></p>
+      <h1 data-c="nom"></h1>
+      <p class="theme" data-c="theme"></p>
+      <p class="theme-en" data-c="themeEn"></p>
+      <p class="intro">Bienvenue dans notre famille. Venez adorer, grandir et servir avec nous à Sarcelles et en ligne.</p>
+      <div class="boutons">
+        <a href="inscription.html" class="bouton">Je m'inscris</a>
+        <a href="zoom.html" class="bouton bouton-vide">Rejoindre sur Zoom</a>
+      </div>
+    </section>
+
+    <section class="piliers">
+      <div class="carte"><h2>Une famille</h2><p>Des cellules de maison et des groupes de prière pour grandir ensemble, près de chez vous.</p></div>
+      <div class="carte"><h2>Le baptême</h2><p>Faites le pas de la foi et accompagnez-vous d'un parcours vers le baptême.</p></div>
+      <div class="carte"><h2>Les cultes</h2><p>Des cultes chaque semaine, sur place à Sarcelles et en ligne sur Zoom.</p></div>
+    </section>
+
+    <section class="centre" id="cultes">
+      <h2>Nos cultes</h2>
+      <div id="cultes-liste"></div>
+    </section>
+
+    <section class="centre">
+      <div class="appel">
+        <h2>Devenez membre</h2>
+        <p>Inscrivez-vous pour rejoindre la famille Spirit Embassy France.</p>
+        <div class="boutons">
+          <a href="inscription.html" class="bouton">Je m'inscris</a>
+          <a href="don.html" class="bouton bouton-vide">Donner</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="titre" data-c="devise"></p>
+    <p data-c="adresse"></p>
+    <p><a id="lien-insta" href="#"></a> · Église mère : <a id="lien-mere" href="#">goodnewsworld.com</a></p>
+  </footer>
+  <div class="liseret"></div>
+
+<script>
+const insta = document.getElementById("lien-insta");
+insta.href = LIENS.instagram;
+insta.textContent = CONFIG.instagramNom;
+document.getElementById("lien-mere").href = LIENS.egliseMere;
+</script>
+</body>
+</html>
