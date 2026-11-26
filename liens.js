@@ -3,7 +3,7 @@ const LIENS = {
   scriptInscription: "COLLEZ_ICI_L_ADRESSE",
 
   // Adresse du tableau de bord (Espace responsables)
-  scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbz5NlZJfWO1XwvgwagVYSnhddboSbx3sgPTqrAiGyCo0TSw9fodtGZ-qVbfYOH-TLyI2g/exec",
+  scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbxvZeh7MK263WywG96yHI7RAWPrRplRkEJElkyFtee86HpAAOi_VP_yAelft77k1Mn2/exec",
 
   instagram: "https://www.instagram.com/spiritembassyparisofficial",
   egliseMere: "https://www.goodnewsworld.com/",
