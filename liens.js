@@ -1,6 +1,6 @@
 const LIENS = {
   // Adresse du script Google (inscriptions)
-  scriptInscription: "COLLEZ_ICI_L_ADRESSE",
+  scriptInscription: "https://script.google.com/macros/s/AKfycbwHO4zunpMpJJopfbxc9B3zyOgb96PBbt3g0KTvc6mWgm5wJS0W1Mn93t1DzhAzpVfMng/exec",
 
   // Adresse du tableau de bord (Espace responsables)
   scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbxvZeh7MK263WywG96yHI7RAWPrRplRkEJElkyFtee86HpAAOi_VP_yAelft77k1Mn2/exec",

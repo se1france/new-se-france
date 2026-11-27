@@ -179,17 +179,19 @@ form.addEventListener("submit", async (e) => {
   bouton.disabled = true;
   bouton.textContent = "Envoi en cours… ne fermez pas la page";
   try {
-    await fetch(LIENS.scriptInscription, { method: "POST", mode: "no-cors", body: new URLSearchParams(d) });
-    localStorage.setItem("inscrit", "1");
-    form.reset();
-    msg.textContent = "";
-    afficherMerci();
-  } catch (err) {
-    bouton.disabled = false;
-    bouton.textContent = "Envoyer mon inscription";
-    msg.style.color = "#EF4135";
-    msg.textContent = "Erreur de connexion. Réessayez ou écrivez-nous à " + LIENS.email + ".";
-  }
+  const r = await fetch(LIENS.scriptInscription, { method: "POST", body: new URLSearchParams(d) });
+  const j = await r.json();
+  if (!j.ok) throw new Error(j.erreur || "refus");
+  localStorage.setItem("inscrit", "1");
+  form.reset();
+  msg.textContent = "";
+  afficherMerci();
+} catch (err) {
+  bouton.disabled = false;
+  bouton.textContent = "Envoyer mon inscription";
+  msg.style.color = "#EF4135";
+  msg.textContent = "Inscription non enregistrée (" + err.message + "). Réessayez ou écrivez-nous à " + LIENS.email + ".";
+}
 });
 
 document.getElementById("autre").addEventListener("click", (e) => {

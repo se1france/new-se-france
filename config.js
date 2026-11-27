@@ -13,7 +13,6 @@ const CONFIG = {
   ]
 };
 
-// Remplit automatiquement les éléments de la page
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-c]").forEach(el => {
     el.textContent = CONFIG[el.dataset.c];
