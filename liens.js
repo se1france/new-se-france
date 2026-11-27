@@ -3,7 +3,7 @@ const LIENS = {
   scriptInscription: "https://script.google.com/macros/s/AKfycbwHO4zunpMpJJopfbxc9B3zyOgb96PBbt3g0KTvc6mWgm5wJS0W1Mn93t1DzhAzpVfMng/exec",
 
   // Adresse du tableau de bord (Espace responsables)
-  scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbxvZeh7MK263WywG96yHI7RAWPrRplRkEJElkyFtee86HpAAOi_VP_yAelft77k1Mn2/exec",
+  scriptTableau: "https://script.google.com/a/macros/spiritembassyfrance.fr/s/AKfycbyosexAvXkPt0aMQKdPDLN89C6clGX0Y4CRty2Ev0rHJHwEZoUpYM1k9OiRThwNpRSQgg/exec",
 
   instagram: "https://www.instagram.com/spiritembassyparisofficial",
   egliseMere: "https://www.goodnewsworld.com/",
